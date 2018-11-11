@@ -30,6 +30,9 @@ def create_app(config_class=Config):
 
   # from app.api.routes import get_user
   # app.register_blueprint(get_user)
+  from app.api import bp as api_bp
+  app.register_blueprint(api_bp)
+
 
   return app
 
