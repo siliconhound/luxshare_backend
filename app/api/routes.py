@@ -6,11 +6,12 @@ from flask import jsonify, request
 
 @bp.route("/user/<string:username>")
 def get_user(username):
-  # print("get me "+username)
-  # return jsonify(User.first(username=username))
-  # return "hola " + username
-  pass
+  user = User.first(username=username)
 
+  if user is None:
+    return jsonify({"message": f"user {username} not found"}), 404
+  
+  return jsonify(user)
 
 @bp.route("/user/<string:username>", methods=["PATCH"])
 @user_exists
